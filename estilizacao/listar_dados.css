@@ -1,0 +1,238 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+}
+
+#btn__voltar{
+    font-size: 1.0em;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: orange;
+    display: block;
+    margin: 15px auto;
+    width: 100px;
+    text-align: center;
+}
+
+#btn__voltar:hover{
+    background-color: orange;
+    color: black;
+}
+
+/* Listagem de dados: usuários, animes e episódios */
+.titulo__usuarios, .titulo__animes, .titulo__episodios{
+    text-align: center;
+    font-size: 1.4em;
+    padding: 5px 10px;
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.titulo__usuarios{
+    color: rgb(255, 35, 35);
+    border: 1px solid rgb(255, 35, 35);
+}
+
+.titulo__animes{
+    color: rgb(61, 61, 255);
+    border: 1px solid rgb(61, 61, 255);
+}
+
+.titulo__episodios{
+    color: gray;
+    border: 1px solid gray;
+}
+
+#btn__cadastrar{
+    font-size: 1.2em;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    display: block;
+    margin: 15px auto;
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#btn__cadastrar:hover{
+    background-color: white;
+    color: black;
+}
+
+.conteudo__principal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+    width: 95%;
+    margin: auto;
+}
+
+.conteudo__principal::-webkit-scrollbar{
+    height: 20px;
+}
+
+.conteudo__principal::-webkit-scrollbar-track{
+    background-color: orange;
+    margin: 5px;
+}
+
+.conteudo__principal::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 20px;
+    border: 3px solid orange;
+}
+
+.conteudo__principal::-webkit-scrollbar-thumb:hover{
+    background-color: #1c1c1c;
+}
+
+.conteudo__principal::-webkit-scrollbar-button:single-button{
+    background-color: black;
+    border: 2px solid orange;
+}
+
+.conteudo__principal::-webkit-scrollbar-button:single-button:hover{
+    background-color: #1c1c1c;
+}
+
+.tabela{
+    border-collapse: separate;
+    font-size: 0.9em;
+    border-spacing: 1px 5px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.tabela__cabecalho{
+    color: orange;
+    font-size: 1.2em;
+}
+
+.tabela__cabecalho th{
+    border: 1px solid orange;
+}
+
+.tabela__corpo td, .tabela__cabecalho th{
+    padding: 5px 10px;
+}
+
+.tabela__corpo tr{
+    background-image: -webkit-linear-gradient(left, #ffdd59, #ff914d);
+}
+
+.tabela__corpo tr:hover{
+    background-image: none;
+    background-color: orange;
+}
+
+.imagem__usuario{
+    width: 75px;
+    display: flex;
+    margin: auto;
+}
+
+.video__episodio{
+    width: 200px;
+    display: flex;
+    margin: auto;
+}
+
+.icones{
+    width: 2rem;
+}
+
+.icones img{
+    width: 2rem;
+    margin: auto;
+}
+
+.icones:hover{
+    cursor: pointer;
+    background-color: rgb(161, 105, 0);
+}
+
+/* Tablet */
+@media (min-width: 725px){
+    .tabela{
+        font-size: 1.0em;
+        border-spacing: 2px 7px;
+    }
+
+    .tabela__cabecalho{
+        font-size: 1.3em;
+    }
+}
+
+/* PC */
+@media (min-width: 1200px){
+    #btn__voltar{
+        font-size: 1.5em;
+        margin-top: 30px;
+    }
+    
+    .titulo__usuarios, .titulo__animes, .titulo__episodios{
+        font-size: 2.0em;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    #btn__cadastrar{
+        font-size: 1.7em;
+        margin-top: 30px;
+    }
+
+    .conteudo__principal{
+        width: 90%;
+    }
+
+    .tabela{
+        font-size: 1.1em;
+        border-spacing: 3px 10px;
+    }
+
+    .tabela__cabecalho{
+        font-size: 1.4em;
+    }
+
+    .imagem__usuario{
+        width: 150px;
+    }
+
+    .video__episodio{
+        width: 300px;
+    }
+
+    .icones{
+        width: 3rem;
+    }
+    
+    .icones img{
+        width: 3rem;
+        margin: auto;
+    }
+}
+
+/* TV */
+@media (min-width: 1600px){
+    .titulo__usuarios, .titulo__animes, .titulo__episodios{
+        width: 80%;
+    }
+
+    .conteudo__principal{
+        width: 80%;
+    }
+}

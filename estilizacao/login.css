@@ -1,0 +1,412 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #1c1c1c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fundo{
+    background-color: black;
+}
+
+/* Cabeçalho */
+.container{
+    width: 95%;
+    margin: auto;
+}
+
+.cabecalho{
+    position: fixed;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.cabecalho a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.logotipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo__img{
+    width: 50px;
+    border-radius: 10px;
+    display: inline;
+}
+
+.logo__nome{
+    margin: 0px 15px;
+}
+
+/* Conteúdo Principal */
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.saudacao{
+    text-align: center;
+}
+
+.titulo{
+    font-size: 1.4rem;
+    margin-top: 70px;
+    padding: 10px;
+    color: orange;
+    border-bottom: 5px solid orange;
+    border-top: 5px solid orange;
+}
+
+.titulo--destaque{
+    color: white;
+}
+
+.texto{
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.formulario{
+    font-size: 1.0rem;
+    color: white;
+    margin: 0 auto;
+    border: 2px solid orange;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-sizing: border-box;
+    width: 90%;
+}
+
+.formulario label{
+    padding: 5px;
+    color: orange;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.formulario input{
+    border: 0;
+    background-color: #1c1c1c;
+    padding: 10px;
+    font-size: 0.9rem;
+    color: white;
+}
+
+#cLogin:focus, #cSenha:focus{
+    border-bottom: 2px solid orange;
+    outline: 0;
+}
+
+.btns{
+    border: 0;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn__entrar{
+    font-size: 1.0rem;
+    background-color: rgb(61, 201, 61);
+    color: black;
+    margin-top: 30px;
+}
+
+#btn__entrar:hover{
+    background-color: rgb(16, 156, 16);
+}
+
+.poster{
+    display: none;
+}
+
+.formulario__cadastro{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 50px;
+}
+
+.formulario__cadastro--alternativa{
+    color: white;
+    padding: 10px;
+    font-size: 1.1em;
+}
+
+#btn__cadastrar{
+    font-size: 1.0rem;
+    width: 85%;
+    margin: auto;
+    background-color: rgb(48, 107, 236);
+}
+
+#btn__cadastrar:hover{
+    background-color: rgb(18, 64, 165);
+}
+
+.subtitulo{
+    margin: 10px;
+    padding: 5px 10px;
+    color: orange;
+    border: 1px solid orange;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.animes{
+    background-color: orange;
+    background-image: -webkit-linear-gradient(left, #ffdd59, #ff914d); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista__animes{
+    list-style: none;
+    margin-top: 10px;
+    padding-bottom: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.lista__item--animes{
+    background-color: black;
+    margin: 30px 10px;
+    padding: 10px;
+}
+
+.lista__item--animes figure{
+    width: 100px;
+    height: 150px;
+}
+
+.imagem--anime{
+    width: inherit;
+    height: inherit;
+}
+
+.imagem--anime:hover{
+    filter: grayscale();
+    cursor: pointer;
+}
+
+.nome--anime{
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Rodapé */
+.rodape{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    margin-top: 150px;
+    border-top: 2px solid orange;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+/* Celular */
+@media (min-width: 400px){
+    .fundo__poster{
+        background-color: orange;
+        width: 100%;
+        position: absolute;
+    }
+
+    .poster{
+        display: block;
+        width: 300px;
+        margin: 0px auto 30px;
+    }
+
+    .form{
+        width: 100%;
+    }
+
+    .formulario{
+        margin-top: 375px;
+        width: 300px;
+    }
+
+    .formulario__cadastro{
+        width: 300px;
+        margin: 30px auto;
+    }
+}
+
+@media (min-width: 500px){
+    .form{
+        flex-direction: column;
+    }
+
+    .formulario{
+        width: 300px;
+    }
+    
+    .lista__animes{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 600px){
+    .form{
+        flex-direction: row;
+        align-items: center;
+        width: 500px;
+    }
+    
+    .formulario{
+        height: 300px;
+        padding: 0px 15px;
+        margin-top: 0px;
+    }
+
+    .formulario label{
+        margin-top: 15px;
+    }
+
+    .fundo__poster{
+        position: relative;
+    }
+
+    .poster{
+        margin: auto;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px){
+
+    .lista__animes{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .lista__item--animes figure{
+        width: 125px;
+        height: 175px;
+    }
+}
+
+/* PC */
+@media (min-width: 1200px){
+    .fundo{
+        width: 80%;
+        margin: auto;
+    }
+
+    .cabecalho{
+        width: 80%;
+    }
+
+    .lista__item--animes figure{
+        width: 150px;
+        height: 200px;
+    }
+}
+
+/* TV */
+@media (min-width: 1600px){
+    .cabecalho a{
+        font-size: 1.8rem;
+    }
+
+    .logotipo{
+        padding: 20px 10px;
+    }
+
+    .logo__img{
+        width: 60px;
+    }
+    
+    .logo__nome{
+        margin: 0px 20px;
+    }
+
+    .titulo{
+        font-size: 2.0rem;
+        margin-top: 100px;
+    }
+
+    .fundo__poster{
+        padding: 30px 0px;
+    }
+
+    .poster{
+        width: 300px;
+    }
+
+    .form{
+        width: 600px;
+        justify-content: center;
+    }
+
+    .formulario{
+        height: 360px;
+        width: 450px;
+        padding: 0 20px;
+    }
+
+    .formulario label{
+        margin-top: 25px;
+    }
+
+    #btn__entrar{
+        margin-top: 45px;
+    }
+
+    .formulario__cadastro{
+        width: 500px;
+    }
+
+    .btn__cadastrar{
+        width: 400px;
+    }
+
+    .subtitulo{
+        font-size: 1.5rem;
+        margin: 50px 100px 0px;
+    }
+
+    .lista__animes{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .lista__item--animes{
+        margin-top: 25px;
+    }
+
+    .nome--anime{
+        margin-top: 15px;
+        font-size: 1.1em;
+    }
+}
