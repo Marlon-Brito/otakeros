@@ -26,7 +26,7 @@
 
         // Se os campos estiverem vazios também adicionará um erro
         if (empty($numero)){
-            $erros[] = 'Necessário preencher o numero!';
+            $erros[] = 'Necessário preencher o número!';
         }
         if (empty($nome)){
             $erros[] = 'Necessário preencher o nome!';
