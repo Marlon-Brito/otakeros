@@ -49,9 +49,11 @@
                         <td>" . $row_usuario['nome'] . "</td>
                         <td>" . $row_usuario['idade'] . "</td>
                         <td>" . $row_usuario['email'] . "</td>
-                        <td>" . $row_usuario['senha'] . "</td>
-                        <td><img src='../avatar/" . $row_usuario['avatar'] . "' class='imagem__usuario'></td>
-                        <td>" . $row_usuario['id_tipo'] . "</td>
+                        <td>" . $row_usuario['senha'] . "</td>"; ?>
+
+                        <td><img src='../avatar/<?php if (empty($row_usuario['avatar'])){echo '../imgs/icone-usuario.png';}else{echo $row_usuario['avatar'];} ?>' class='imagem__usuario'></td>
+
+                        <?php echo "<td>" . $row_usuario['id_tipo'] . "</td>
                         <td class='icones'>
                             <a href='../controller/alterar.php?id_usuario=" . $row_usuario['id_usuario'] . " '><img src='../imgs/icone-edicao.png'></a>
                         </td>

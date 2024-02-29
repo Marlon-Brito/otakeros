@@ -97,6 +97,20 @@
     $_SESSION["avatar_session"] = $uploadfile;
 
     // Redirecionar para a página home
-    echo "<script>alert('Perfil alterado com sucesso!');</script>";
-    echo "<script>location.href='../../view/pagina_home.php';</script>";
+    echo "<div class='sucessos'>Perfil alterado com sucesso!</div>";
+            
+    echo "<a href='../../view/pagina_home.php' id='btn__ok'>OK</a>";
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otakeros</title>
+    <link rel="stylesheet" href="../../estilizacao/sucessos.css">
+</head>
+<body>
+    <!-- Estilização dos Sucessos -->
+</body>
+</html>

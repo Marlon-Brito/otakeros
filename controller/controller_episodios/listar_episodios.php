@@ -51,7 +51,7 @@
                             <a href='./video/'>" . $row_episodio['video_url_episodio'] . "</a>
                         </td>
                         <td>
-                            <video src='./video/" . $row_episodio['video_url_episodio'] . "' style='width: 200px;' controls></video>
+                            <video src='./video/" . $row_episodio['video_url_episodio'] . "' class='imagem__episodio' controls></video>
                         </td>
                         <td>" . $row_episodio['id_anime'] . "</td>
                         <td class='icones'>

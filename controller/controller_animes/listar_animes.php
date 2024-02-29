@@ -45,7 +45,7 @@
                         <td>" . $row_anime['id_anime'] . "</td>
                         <td>" . $row_anime['nome_anime'] . "</td>
                         <td>" . $row_anime['descricao_anime'] . "</td>
-                        <td><img src='./imagem/" . $row_anime['imagem_anime'] . "' style='width: 100px;'></td>
+                        <td><img src='./imagem/" . $row_anime['imagem_anime'] . "' class='imagem__anime'></td>
                         <td class='icones'>
                             <a href='../controller_animes/alterar_animes.php?id_anime=" . $row_anime['id_anime'] . " '>
                                 <img src='../../imgs/icone-edicao.png'>

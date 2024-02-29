@@ -69,7 +69,7 @@
                     <li class="cabecalho__menu--linha">
                         <a href="./pagina_alterar_perfil.php?id_usuario=<?php echo $id_usuario; ?>" class="cabecalho__menu--linha-item">
                             <div class="perfil">
-                                <img src="../avatar/<?php echo $avatar ?>" class="perfil--usuario">
+                                <img src="../avatar/<?php if (empty($avatar)){echo "../imgs/icone-usuario.png";}else{echo $avatar;} ?>" class="perfil--usuario">
                                 <span class="perfil--usuario-nome"><?php echo $nome ?></span>
                             </div>
                         </a>

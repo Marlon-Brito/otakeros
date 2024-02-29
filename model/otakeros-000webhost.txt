@@ -1,4 +1,0 @@
-senha: m=brito<>a4\/M
-nomebd: id21925903_bdotakeros
-usuáriobd: id21925903_marlon
-host: localhost

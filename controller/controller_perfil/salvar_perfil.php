@@ -98,8 +98,9 @@
                 }
 
                 // Redirecionar para o início
-                echo "<script>alert('Usuário cadastrado com sucesso!');</script>";
-                echo "<script>location.href='../../index.php';</script>";
+                echo "<div class='sucessos'>Usuário cadastrado com sucesso!</div>";
+                
+                echo "<a href='../../index.php' id='btn__ok'>OK</a>";
 
                 // Inserir os dados do perfil do usuário no banco
                 $sql -> query("INSERT INTO usuario (id_usuario, nome, idade, email, senha, avatar, id_tipo)
@@ -114,10 +115,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otakeros - Erro</title>
+    <title>Otakeros</title>
     <link rel="stylesheet" href="../../estilizacao/erros.css">
+    <link rel="stylesheet" href="../../estilizacao/sucessos.css">
 </head>
 <body>
-    <!-- Estilização dos Erros -->
+    <!-- Estilização dos Erros e Sucessos -->
 </body>
 </html>
