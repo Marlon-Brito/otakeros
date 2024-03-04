@@ -67,7 +67,7 @@
         }
         // Senão nenhum anime foi encontrado
         else{
-            echo "<td colspan='5' id='msg_erro'>Nenhum anime encontrado...</td>";
+            echo "<td colspan='6' class='msg__erro'>Nenhum anime encontrado...</td>";
         }
     ?>
 </body>

@@ -1,8 +1,6 @@
 <?php
     // Conectando ao MySQL utilizando MySQLi
-    $sql = new MySQLi('localhost', 'root', 'M@rl0n-4e99', 'otakeros');
-    // phpMyAdmin
-    //$sql = new MySQLi('localhost', 'id21925903_marlon', 'm=brito<>a4\/M', 'id21925903_bdotakeros');
+    $sql = new MySQLi('localhost', 'root', 'm=46343746', 'otakeros');
 
     // Falha ao conectar no banco de dados
     if($sql->connect_error){

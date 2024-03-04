@@ -167,6 +167,12 @@ body{
     margin: auto;
 }
 
+.link__episodio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .video__episodio{
     width: 200px;
     display: flex;
@@ -185,6 +191,11 @@ body{
 .icones:hover{
     cursor: pointer;
     background-color: rgb(161, 105, 0);
+}
+
+.msg__erro{
+    background-image: -webkit-linear-gradient(left, #ffdd59, #ff914d);
+    padding: 10px 20px;
 }
 
 /* Tablet */

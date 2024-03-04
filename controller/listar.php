@@ -66,7 +66,7 @@
         }
         // Senão nenhum usuário foi encontrado
         else{
-            echo "<td colspan='8' id='msg_erro'>Nenhum usuário encontrado...</td>";
+            echo "<td colspan='8' class='msg__erro'>Nenhum usuário encontrado...</td>";
         }
     ?>
 </body>

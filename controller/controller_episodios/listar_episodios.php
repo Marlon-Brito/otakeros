@@ -48,7 +48,7 @@
                         <td>" . $row_episodio['id_numero_episodio'] . "</td>
                         <td>" . $row_episodio['nome_episodio'] . "</td>
                         <td>
-                            <a href='./video/'>" . $row_episodio['video_url_episodio'] . "</a>
+                            <a href='./video/' class='link__episodio'>" . $row_episodio['video_url_episodio'] . "</a>
                         </td>
                         <td>
                             <video src='./video/" . $row_episodio['video_url_episodio'] . "' class='imagem__episodio' controls></video>
@@ -66,7 +66,7 @@
         }
         // Senão nenhum episódio foi encontrado
         else{
-            echo "<td colspan='6' id='msg_erro'>Nenhum episódio encontrado...</td>";
+            echo "<td colspan='7' class='msg__erro'>Nenhum episódio encontrado...</td>";
         }
 
         echo "
