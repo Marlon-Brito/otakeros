@@ -1,0 +1,356 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #1c1c1c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fundo{
+    background-color: black;
+}
+
+/* Cabeçalho */
+.cabecalho{
+    background-color: black;
+    width: 100%;
+    text-align: center;
+}
+
+.cabecalho a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.logotipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo__img{
+    width: 50px;
+    border-radius: 10px;
+    display: inline;
+}
+
+.logo__nome{
+    margin: 0px 15px;
+}
+
+.cabecalho__menu{
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cabecalho__menu--linha{
+    display: inline;
+}
+
+.cabecalho__menu .cabecalho__menu--linha-item{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 0.8rem;
+    height: 25px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.cabecalho__menu--linha-item:hover{
+    background-color: rgb(161, 105, 0);
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+}
+
+.perfil--usuario{
+    width: 30px;
+    border-radius: 5px;
+}
+
+.perfil--usuario-nome{
+    padding: 5px;
+}
+
+/* Conteúdo Principal */
+.container{
+    width: 95%;
+    margin: auto;
+}
+
+.episodio{
+    margin-top: 50px;
+}
+
+.episodio__titulo{
+    color: white;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 1.4rem;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid orange;
+}
+
+.episodio__subtitulo{
+    padding: 5px 10px;
+    background-color: orange;
+    font-size: 1.2em;
+    margin: 10px 0px;
+    text-align: center;
+}
+
+.episodio__video{
+    background-color: #1c1c1c;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.episodio__video--assistir{
+    width: 100%;
+    height: 15%;
+}
+
+.episodio__video--navegacao{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0px;
+}
+
+.episodio__video--navegacao a{
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+.episodio__video--navegacao li{
+    background-color: orange;
+    display: inline-block;
+    border: 1px solid black;
+    width: 100%;
+    height: 30px;
+}
+
+.episodio__video--navegacao li:hover{
+    background-color: rgb(161, 105, 0);
+    cursor: pointer;
+}
+
+.icones{
+    background-size: 1em;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.antes__icone{
+    background-image: url("../imgs/icone-antes.png");
+}
+
+.lista__icone{
+    background-image: url("../imgs/icone-lista.png");
+}
+
+.depois__icone{
+    background-image: url("../imgs/icone-depois.png");
+}
+
+.imagem__icone{
+    display: none;
+}
+
+.termo__icone{
+    display: none;
+}
+
+.acabou__icone{
+    width: 40%;
+}
+
+.episodio__info{
+    margin-top: 40px;
+}
+
+.episodio__info--subtitulo{
+    padding: 5px 10px;
+    border: 1px solid orange;
+    color: orange;
+    font-size: 1.2em;
+    margin: 10px 0px;
+}
+
+.episodio__info--sinopse{
+    color: white;
+    text-align: justify;
+    font-size: 0.8em;
+}
+
+.poster--pb{
+    display: flex;
+    margin: auto;
+    margin-top: 25px;
+}
+
+/* Rodapé */
+.rodape{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    margin-top: 150px;
+    border-top: 2px solid orange;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+/* Tablet */
+@media (min-width: 768px){
+    .episodio{
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+    .antes__icone,
+    .lista__icone,
+    .depois__icone{
+        background-image: none;
+    }
+
+    .episodio__video--navegacao li{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .imagem__icone{
+        display: block;
+        width: 20px;
+        margin: 5px;
+    }
+
+    .termo__icone{
+        display: block;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+
+    .episodio__info--sinopse{
+        font-size: 0.9em;
+    }
+}
+
+/* PC */
+@media (min-width: 1200px){
+    .cabecalho a{
+        font-size: 1.8rem;
+    }
+
+    .cabecalho__menu .cabecalho__menu--linha-item{
+        padding: 0.8rem 1.5rem;
+        font-size: 1.0rem;
+        height: 35px;
+    }
+
+    .perfil--usuario{
+        width: 50px;
+    }
+    
+    .perfil--usuario-nome{
+        padding: 10px;
+    }
+
+    .logotipo{
+        padding: 20px 10px;
+    }
+
+    .logo__img{
+        width: 60px;
+    }
+    
+    .logo__nome{
+        margin: 0px 20px;
+    }
+
+    .episodio{
+        margin-top: 100px;
+    }
+
+    .episodio__video--assistir{
+        width: 900px;
+    }
+
+    .episodio__video--navegacao li{
+        height: 35px;
+    }
+
+    .episodio__info--subtitulo{
+        padding: 5px 10px;
+        border: 1px solid orange;
+        color: orange;
+        font-size: 1.2em;
+        margin: 10px 0px;
+    }
+
+    .poster--pb{
+        display: flex;
+        margin: auto;
+        margin-top: 50px;
+    }
+}
+
+/* TV */
+@media (min-width: 1600px){
+    .fundo{
+        width: 80%;
+        margin: auto;
+    }
+
+    .episodio__titulo{
+        font-size: 2.0rem;
+    }
+
+    .episodio__subtitulo{
+        font-size: 1.3rem;
+    }
+
+    .episodio__video--assistir{
+        width: 900px;
+    }
+
+    .episodio__video--navegacao li{
+        height: 40px;
+    }
+
+    .imagem__icone{
+        margin: 10px;
+    }
+
+    .termo__icone{
+        font-size: 1.0em;
+    }
+
+    .episodio__info--subtitulo{
+        font-size: 1.3em;
+    }
+
+    .episodio__info--sinopse{
+        font-size: 1.0em;
+    }
+}

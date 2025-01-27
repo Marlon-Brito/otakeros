@@ -1,0 +1,300 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #1c1c1c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fundo{
+    background-color: black;
+}
+
+/* Cabeçalho */
+.cabecalho{
+    background-color: black;
+    width: 100%;
+    text-align: center;
+}
+
+.cabecalho a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.logotipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo__img{
+    width: 50px;
+    border-radius: 10px;
+    display: inline;
+}
+
+.logo__nome{
+    margin: 0px 15px;
+}
+
+.cabecalho__menu{
+    background-color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cabecalho__menu--linha{
+    display: inline;
+}
+
+.cabecalho__menu .cabecalho__menu--linha-item{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 0.8rem;
+    height: 25px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.cabecalho__menu--linha-item:hover{
+    background-color: rgb(161, 105, 0);
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+}
+
+.perfil--usuario{
+    width: 30px;
+    border-radius: 5px;
+}
+
+.perfil--usuario-nome{
+    padding: 5px;
+}
+
+/* Conteúdo Principal */
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.conteudo{
+    margin-top: 50px;
+}
+
+.anime{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid orange;
+    padding: 10px;
+}
+
+.anime__imagem{
+    width: 150px;
+    height: 200px;
+    margin: auto;
+    padding: 10px;
+}
+
+.anime__nome{
+    padding: 10px;
+    color: orange;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.anime__sinopse{
+    text-align: justify;
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+
+.episodios{
+    margin-top: 50px;
+}
+
+.episodios__titulo{
+    margin-bottom: 10px;
+    text-align: center;
+    color: orange;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid orange;
+    padding: 5px;
+    font-size: 1.2em;
+}
+
+.episodios__lista{
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.episodios__lista a{
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+
+.episodios__lista--episodio{
+    background-color: orange;
+    padding: 5px 10px;
+    margin: 2px;
+}
+
+.episodios__lista--episodio:hover{
+    background-color: rgb(161, 105, 0);
+}
+
+.poster--pb{
+    display: flex;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.titulo__erro{
+    background-color: rgb(255, 35, 35);
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+/* Rodapé */
+.rodape{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    margin-top: 150px;
+    border-top: 2px solid orange;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+/* Tablet */
+@media (min-width: 768px){
+    .anime{
+        width: 80%;
+        margin: auto;
+    }
+
+    .anime__sinopse{
+        font-size: 0.9em;
+    }
+
+    .episodios__lista{
+        font-size: 1.0em;
+    }
+
+    .episodios__lista--episodio{
+        padding: 7px 15px;
+        margin: 3px;
+    }
+}
+
+/* PC */
+@media (min-width: 1200px){
+    .cabecalho a{
+        font-size: 1.8rem;
+    }
+    
+    .cabecalho__menu .cabecalho__menu--linha-item{
+        padding: 0.8rem 1.5rem;
+        font-size: 1.0rem;
+        height: 35px;
+    }
+
+    .perfil--usuario{
+        width: 50px;
+    }
+    
+    .perfil--usuario-nome{
+        padding: 10px;
+    }
+    
+    .logotipo{
+        padding: 20px 10px;
+    }
+    
+    .logo__img{
+        width: 60px;
+    }
+    
+    .logo__nome{
+        margin: 0px 20px;
+    }
+
+    .conteudo{
+        margin-top: 100px;
+    }
+
+    .anime__imagem{
+        width: 200px;
+        height: 250px;
+        padding: 20px;
+    }
+
+    .episodios{
+        margin-top: 100px;
+    }
+
+    .poster--pb{
+        display: flex;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+    .titulo__erro{
+        width: 80%;
+        margin-top: 100px;
+        font-size: 2.0em;
+    }
+}
+
+/* TV */
+@media (min-width: 1600px){
+    .fundo{
+        width: 80%;
+        margin: auto;
+    }
+
+    .anime__nome{
+        padding: 10px;
+        color: orange;
+        font-weight: bold;
+        text-align: center;
+        font-size: 2.0em;
+    }
+
+    .anime__sinopse{
+        font-size: 1.0em;
+    }
+
+    .episodios__titulo{
+        font-size: 1.3em;
+    }
+
+    .episodios__lista{
+        font-size: 1.1em;
+    }
+
+    .episodios__lista--episodio{
+        padding: 10px 20px;
+        margin: 4px;
+    }
+}

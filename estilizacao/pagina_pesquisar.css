@@ -1,0 +1,305 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #1c1c1c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fundo{
+    background-color: black;
+}
+
+/* Cabeçalho */
+.cabecalho{
+    background-color: black;
+    width: 100%;
+    text-align: center;
+}
+
+.cabecalho a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.logotipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo__img{
+    width: 50px;
+    border-radius: 10px;
+    display: inline;
+}
+
+.logo__nome{
+    margin: 0px 15px;
+}
+
+.cabecalho__menu{
+    background-color: orange;
+}
+
+.cabecalho__menu--linha{
+    display: inline;
+}
+
+.cabecalho__menu .cabecalho__menu--linha-item{
+    color: white;
+    display: inline-block;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.cabecalho__menu--linha-item:hover{
+    background-color: rgb(161, 105, 0);
+}
+
+/* Conteúdo Principal */
+.container{
+    width: 90%;
+    margin: auto;
+}
+
+#btn__voltar{
+    font-size: 1.0em;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+    display: block;
+    margin: 15px auto;
+    width: 100px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#btn__voltar:hover{
+    color: black;
+    background-color: white;
+}
+
+.titulo{
+    font-size: 1.4rem;
+    color: orange;
+    text-align: center;
+    border-top: 1px solid orange;
+    border-bottom: 1px solid orange;
+    padding: 5px 10px;
+    margin-top: 50px;
+}
+
+.resultado{
+    text-align: center;
+}
+
+.subtitulo{
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 30px;
+}
+
+.digitado{
+    color: orange;
+    margin: 5px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.animes{
+    background-color: orange;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.lista__animes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style: none;
+    background-color: black;
+    padding-bottom: 10px;
+}
+
+.lista__animes--item{
+    margin: 20px 10px 50px;
+}
+
+.lista__animes--item a{
+    text-decoration: none;
+}
+
+.lista__animes--item figcaption:hover{
+    color: gray;
+}
+
+.lista__animes--item figure{
+    width: 100px;
+    height: 150px;
+}
+
+.imagem--anime{
+    width: inherit;
+    height: inherit;
+}
+
+.imagem--anime:hover{
+    filter: grayscale();
+}
+
+.nome--anime{
+    color: orange;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.poster--pb{
+    display: flex;
+    margin: auto;
+    margin-top: 25px;
+}
+
+/* Rodapé */
+.rodape{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    margin-top: 150px;
+    border-top: 2px solid orange;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+/* Celular */
+@media (min-width: 500px){
+    .lista__animes{
+        width: 80%;
+        margin: auto;
+    }    
+
+    .lista__animes--item figure{
+        width: 125px;
+        height: 175px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px){
+    .lista__animes{
+        padding: 10px;
+        width: 60%;
+    }    
+}
+
+/* PC */
+@media (min-width: 1200px){
+    .container{
+        width: 80%;
+    }
+
+    .cabecalho a{
+        font-size: 1.8rem;
+    }
+
+    .cabecalho__menu .cabecalho__menu--linha-item{
+        padding: 0.8rem 1.5rem;
+        font-size: 1.0rem;
+    }
+
+    .logotipo{
+        padding: 20px 10px;
+    }
+
+    .logo__img{
+        width: 60px;
+    }
+    
+    .logo__nome{
+        margin: 0px 20px;
+    }
+
+    #btn__voltar{
+        font-size: 1.5em;
+        margin-top: 100px;
+    }
+
+    .lista__animes{
+        padding: 10px;
+        width: 40%;
+    }  
+
+    .nome--anime{
+        margin-top: 5px;
+    }
+
+    .poster--pb{
+        display: flex;
+        margin: auto;
+        margin-top: 50px;
+    }
+}
+
+/* TV */
+@media (min-width: 1600px){
+    .fundo{
+        width: 80%;
+        margin: auto;
+    }
+
+    #btn__voltar{
+        font-size: 1.5em;
+        margin-top: 75px;
+    }
+
+    .titulo{
+        font-size: 2.0rem;
+        margin-top: 75px;
+    }
+
+    .subtitulo{
+        font-size: 1.3rem;
+    }
+
+    .digitado{
+        font-size: 1.4em;
+    }
+
+    .animes{
+        margin-top: 30px;
+    }
+
+    .lista__animes{
+        margin-top: 15px;
+        padding-bottom: 30px;
+        width: 60%;
+    }
+
+    .lista__animes--item{
+        margin-top: 25px;
+        margin: 25px 10px 75px;
+    }
+
+    .lista__animes--item figure{
+        width: 200px;
+        height: 250px;
+    }
+
+    .nome--anime{
+        margin-top: 10px;
+        font-size: 1.3em;
+    }
+}

@@ -1,0 +1,272 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #1c1c1c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fundo{
+    background-color: black;
+    margin: auto;
+}
+
+/* Cabeçalho */
+.cabecalho{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.cabecalho a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.logotipo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo__img{
+    width: 50px;
+    border-radius: 10px;
+    display: inline;
+}
+
+.logo__nome{
+    margin: 0px 15px;
+}
+
+.cabecalho__menu{
+    background-color: orange;
+}
+
+.cabecalho__menu--linha{
+    display: inline;
+}
+
+.cabecalho__menu .cabecalho__menu--linha-item{
+    color: white;
+    display: inline-block;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.cabecalho__menu--linha-item:hover{
+    background-color: rgb(161, 105, 0);
+}
+
+/* Conteúdo Principal */
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.administrador{
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.titulo{
+    border: 1px solid orange;
+    color: orange;
+    padding: 5px 10px;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.4em;
+}
+
+.texto{
+    color: white;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.texto--destaque{
+    color: orange;
+    font-size: 1.1em;
+}
+
+.administrador__icone{
+    background-color: orange;
+    width: 150px;
+    padding: 10px;
+    border-radius: 100%;
+    margin: auto;
+}
+
+.dados{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btns{
+    width: 100px;
+    padding: 10px 0px;
+    font-size: 0.9em;
+    background-color: black;
+    border-radius: 10px;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+#btn__usuarios{
+    color: rgb(255, 35, 35);
+    border: 3px solid rgb(255, 35, 35);
+}
+
+#btn__usuarios:hover{
+    color: black;
+    background-color: rgb(255, 35, 35);
+    font-weight: bold;
+}
+
+#btn__animes{
+    color: rgb(61, 61, 255);
+    border: 3px solid rgb(61, 61, 255);
+}
+
+#btn__animes:hover{
+    color: black;
+    background-color: rgb(61, 61, 255);
+    font-weight: bold;
+}
+
+.informacoes{
+    margin: 10px;
+    margin-top: 50px;
+}
+
+.subtitulo{
+    font-size: 1.2em;
+    background-color: orange;
+    padding: 5px 10px;
+    margin-top: 50px;
+}
+
+.informacoes__detalhes{
+    color: white;
+    text-align: justify;
+    font-size: 0.9em;
+    padding: 10px;
+    border: 1px solid orange;
+}
+
+/* Rodapé */
+.rodape{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    margin-top: 150px;
+    border-top: 2px solid orange;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+/* Celular */
+@media (min-width: 500px){
+    .informacoes{
+        width: 80%;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+    .subtitulo{
+        margin-top: 50px;
+    }
+
+    .informacoes__detalhes{
+        padding: 15px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px){
+    .administrador__icone{
+        width: 200px;
+    }
+
+    .btns{
+        width: 150px;
+        font-size: 1.2em;
+        margin: 5px 10px;
+    }
+}
+
+/* PC */
+@media (min-width: 1200px){
+    .fundo{
+        width: 80%;
+    }
+
+    .cabecalho{
+        width: 80%;
+    }
+
+    .cabecalho a{
+        font-size: 1.8rem;
+    }
+
+    .cabecalho__menu .cabecalho__menu--linha-item{
+        padding: 0.8rem 1.5rem;
+        font-size: 1.0rem;
+    }
+
+    .logotipo{
+        padding: 20px 10px;
+    }
+
+    .logo__img{
+        width: 60px;
+    }
+    
+    .logo__nome{
+        margin: 0px 20px;
+    }
+
+    .titulo{
+        margin-top: 100px;
+    }
+
+    .informacoes{
+        width: 70%;
+    }
+}
+
+/* TV */
+@media (min-width: 1600px){
+    .fundo{
+        width: 80%;
+    }
+
+    .cabecalho{
+        width: 80%;
+    }
+
+    .titulo{
+        font-size: 2.0em;
+    }
+
+    .informacoes{
+        width: 70%;
+    }
+
+    .subtitulo{
+        font-size: 1.3em;
+    }
+}
