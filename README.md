@@ -50,14 +50,14 @@ Otakeros é um site e também comunidade online cuja mídia se baseia na transmi
       INSERT INTO `usuario` VALUES (1,'Nemo',20,'neminho@gmail.com','1234','',1), (2,'Sara',15,'sara@gmail.com','2468','Sara.jpeg',2);
       ```
       E só informando sobre os campos de dados acima:
-| Campos               | Dados                | Descrição            |
-| -------------------- | -------------------- | -------------------- |
-| 1 º                  | 1                    | ID ou identificador do usuário.               |
-| 2 º                  | 'Nemo'               | Nome do usuário.      |
-| 3 º                  | 'neminho@gmail.com'  | E-mail do usuário.    |
-| 4 º                  | '1234'               | Senha do usuário.     |
-| 5 º                  | ''                   | Imagem do usuário (sem imagem nesse caso, caso insira uma ela deve ter o mesmo nome do usuário seguido de sua extensão e deve estar na pasta avatar, é prara lá que todos uploads de imagens de usuários vão).              |
-| 6 º     | 1     | ID ou código identificador do tipo de usuário (só há dois tipos: o 1 que é o ADM e o 2 que é o espectador). |
+      | Campos               | Dados                | Descrição            |
+      | -------------------- | -------------------- | -------------------- |
+      | 1 º                  | 1                    | ID ou identificador do usuário.               |
+      | 2 º                  | 'Nemo'               | Nome do usuário.      |
+      | 3 º                  | 'neminho@gmail.com'  | E-mail do usuário.    |
+      | 4 º                  | '1234'               | Senha do usuário.     |
+      | 5 º                  | ''                   | Imagem do usuário (sem imagem nesse caso, caso insira uma ela deve ter o mesmo nome do usuário seguido de sua extensão e deve estar na pasta avatar, é prara lá que todos uploads de imagens de usuários vão).              |
+      | 6 º     | 1     | ID ou código identificador do tipo de usuário (só há dois tipos: o 1 que é o ADM e o 2 que é o espectador). |
       Assim como também pode inserir outros dados... Mas de começo deixei apenas um usuário administrador e um espectador, o resto fica a critério de vocês!
    3. Voltando para o laragon já inicializado, clique no botão "Terminal", ele levará para o console/linha de comando do MySQL.
    4. Digite o comando "mysql -u root -p" para acessar o SGBD, se pedir a senha aperte ENTER pois é padrão não ter uma, mas caso você já use o MySQL e possui uma criada terá que inserí-la.
