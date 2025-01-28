@@ -37,9 +37,13 @@ Otakeros é um site e também comunidade online cuja mídia se baseia na transmi
    Então pode-se pegar o projeto e jogar na pasta "www" para ele poder rodar, uma vez feito isso abra o laragon e faça o seguinte:
 1. Clique no botão "Iniciar Tudo"
 2. Aguarde um momento e veja se tanto o Apache quanto o MySQL se mostraram como ativados (eles respectivamente usam geralmente as sequintes portas, 80 e 3306).
-3. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
-4. Só falta instalar o banco de dados do projeto:
-   1. 
+3. Então vai-se instalar o banco de dados do projeto:
+   1. Entre no projeto e acesse sua pasta "model".
+   2. Procure o arquivo **SQL** "otakeros-banco-de-dados" e copie todo seu código (este é o script do banco de dados do projeto).
+   3. Voltando para o laragon já inicializado, clique no botão "Terminal", ele levará para o console/linha de comando do MySQL.
+   4. Digite o comando "mysql -u root -p" para acessar o SGBD, se pedir a senha aperte ENTER pois é padrão não ter uma, mas caso você já use o MySQL e possui uma criada terá que inserí-la.
+   5. Feito isso dá para usar os comandos de banco de dados livremente neste momento, então aqui se vai colar todo aquele código copiado do arquivo aberto anteriormente e dar ENTER para criar o banco.
+4. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
      
    Pronto! o projeto estará rodando no servidor criado.
 
