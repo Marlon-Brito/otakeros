@@ -33,10 +33,12 @@ Otakeros é um site e também comunidade online cuja mídia se baseia na transmi
 ## 🚀 Como usar
 
    Após instalá-lo será criada uma pasta chamada "laragon" no devido lugar que escolher guardá-la, dentro desta terá outra pasta chamada "www", nesta última ficará seus projetos feitos em PHP (devendo-se lembrar sempre de salvá-los nela, senão não executarão).
+   
    Então pode-se pegar o projeto e jogar na pasta "www" para ele poder rodar, uma vez feito isso abra o laragon e faça o seguinte:
-     1. Clique no botão "Iniciar Tudo"
-     2. Aguarde um momento e veja se tanto o Apache quanto o MySQL se mostraram como ativados (eles respectivamente usam geralmente as sequintes portas, 80 e 3306).
-     3. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
+1. Clique no botão "Iniciar Tudo"
+2. Aguarde um momento e veja se tanto o Apache quanto o MySQL se mostraram como ativados (eles respectivamente usam geralmente as sequintes portas, 80 e 3306).
+3. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
+     
    Pronto! o projeto estará rodando no servidor criado.
 
 ## 🖥️ Deploy
