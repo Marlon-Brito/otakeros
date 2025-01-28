@@ -64,8 +64,25 @@ Otakeros é um site e também comunidade online cuja mídia se baseia na transmi
    4. Voltando para o laragon já inicializado, clique no botão "Terminal", ele levará para o console/linha de comando do MySQL.
    5. Digite o comando "mysql -u root -p" para acessar o SGBD, se pedir a senha aperte ENTER pois é padrão não ter uma, mas caso você já use o MySQL e possui uma criada terá que inserí-la.
    6. Feito isso dá para usar os comandos de banco de dados livremente neste momento, então aqui se vai colar todo aquele código copiado do arquivo aberto anteriormente e dar ENTER para criar o banco.
-4. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
-5. Então você pode acessar o projeto tanto como ADM com as informações de e-mail e senha feitas no script ou, como visto na interface do site, criar um registro e acessar como espectador.
+   7. E tendo o banco do projeto já instalado deve-se conectá-lo ao projeto em si, por isso na mesma pasta "model" se abrirá o arquivo "conectar.php" e irá substituir as informações descritivas que estão na variável de conexão "$sql" pelas do banco de dados, exemplo:
+      Variável de conexão com informações descritivas.
+      ```
+      $sql = new MySQLi('host', 'usuario', 'senha', 'banco-de-dados'); 
+      ```
+      Trocando estas informações pelas reais do banco.
+      ```
+      $sql = new MySQLi('localhost', 'root', '12345678', 'otakeros'); 
+      ```
+      E só informando sobre os campos de dados acima:
+      | Campos               | Dados                | Descrição            |
+      | -------------------- | -------------------- | -------------------- |
+      | 1 º                  | 'localhost'                   | Servidor (no caso é o local).               |
+      | 2 º                  | 'root'               | Nome do usuário (por padrão é o root).      |
+      | 3 º                  | '12345678'  | Senha do usuário.    |
+      | 4 º                  | 'otakeros'  | Nome do banco de dados.    |
+   
+5. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
+6. Então você pode acessar o projeto tanto como ADM com as informações de e-mail e senha feitas no script ou, como visto na interface do site, criar um registro e acessar como espectador.
      
    Pronto! o projeto estará rodando no servidor criado.
 
