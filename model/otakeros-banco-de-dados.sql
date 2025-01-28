@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `if0_38182847_bd_otakeros`;
-USE `if0_38182847_bd_otakeros`;
+CREATE DATABASE  IF NOT EXISTS `otakeros`;
+USE `otakeros`;
 
 DROP TABLE IF EXISTS `anime`;
 
