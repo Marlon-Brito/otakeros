@@ -38,6 +38,8 @@ Otakeros é um site e também comunidade online cuja mídia se baseia na transmi
 1. Clique no botão "Iniciar Tudo"
 2. Aguarde um momento e veja se tanto o Apache quanto o MySQL se mostraram como ativados (eles respectivamente usam geralmente as sequintes portas, 80 e 3306).
 3. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
+4. Só falta instalar o banco de dados do projeto:
+   1. 
      
    Pronto! o projeto estará rodando no servidor criado.
 
