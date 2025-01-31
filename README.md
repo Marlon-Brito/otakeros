@@ -18,7 +18,7 @@ __Otakeros__ é um site e também comunidade online cuja mídia se baseia na tra
 
 2. Acesse a pasta do projeto:
    ```bash
-   cd projeto
+   cd nome-projeto
 
 3. Também será necessário baixar o __Laragon__, é um ambiente de desenvolvimento para Windows que facilita a configuração de servidores locais para desenvolvimento web (ou se possuir outro sistema operacional o **Xampp** pode ser uma boa pedida por ser multiplataforma).
 
