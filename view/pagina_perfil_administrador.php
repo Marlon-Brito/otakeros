@@ -1,44 +1,10 @@
 <?php
-    // Determina se uma variável é considerada definida, isto é, está declarada e é diferente de null
-    // Se a variável tornou-se indefinida com a função unset() , ela não é mais considerada definida
-    if (!isset($_SESSION)){
-        session_start();
-    }
+    // Inclui e verifica se o arquivo já foi incluído, caso sim, não o exigirá novamente
+    require_once __DIR__ . '/../controller/funcoes.php';
 
-    // Não permite acessar a página principal pelo navegador
-    // Senão existir a seção volta pela página de erro
-    if (!isset($_SESSION["login_session"])       AND
-        !isset($_SESSION["senha_session"])       AND
+    protegerPagina(1); // Só adms são permitidos nesta página
 
-        !isset($_SESSION["id_usuario_session"]) AND
-        !isset($_SESSION["nome_session"])        AND
-        !isset($_SESSION["idade_session"])         AND
-        !isset($_SESSION["avatar_session"])      AND
-        !isset($_SESSION["tipo_session"])
-    ){
-        header("location: ../view/erro_url.html");
-        exit;
-    }
-    // Bloquear página ao tentar ir pela url sem logar
-    if (isset($_GET['logout'])){
-        unset($_SESSION['login_session']);
-        unset($_SESSION['senha_session']);
-        session_destroy();
-        header('location: ../index.php');
-    }
-    // Se o usuário não for um administrador irá para a página de erro
-    if ($_SESSION["tipo_session"] != 1){
-        session_destroy();
-        header("location: ../view/erro_url.html");
-    }
-
-    $id_usuario = $_SESSION["id_usuario_session"];
-    $nome = $_SESSION["nome_session"];
-    $idade = $_SESSION["idade_session"];
-    $email = $_SESSION["login_session"];
-    $senha = $_SESSION["senha_session"];
-    $avatar = $_SESSION["avatar_session"];
-    $tipo = $_SESSION["tipo_session"];
+    $nome = $_SESSION["nome_session"] ?? "Administrador"; // Trazendo o nome do adm
 ?>
 
 <!DOCTYPE html>
@@ -47,65 +13,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otakeros - Administrador</title>
-    <link rel="stylesheet" href="../estilizacao/pagina_perfil_administrador.css">
+    <link rel="shortcut icon" href="../assets/imgs/favicon-16x16.png" type="image/x-icon">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&display=swap" rel="stylesheet">
+    <!-- TailswindCSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div class="fundo">
-        <!-- Cabeçalho -->
-        <header class="cabecalho">
-            <a href="./pagina_perfil_administrador.php" class="logotipo">
-                <img class="logo__img" src="../imgs/logo-otakeros-p.png">
-                <div class="logo__nome">Otakeros</div>
-            </a>
-    
-            <nav>
-                <ul class="cabecalho__menu">
-                    <li class="cabecalho__menu--linha">
-                        <a href="./pagina_perfil_administrador.php" class="cabecalho__menu--linha-item">Área Administrativa</a>
-                    </li>
-                    <li class="cabecalho__menu--linha">
-                        <a href="?logout" class="cabecalho__menu--linha-item">Sair</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+<body class="text-white text-base font-[Inter]">
+    <div class="bg-stone-900">
+        <!-- Cabeçalho Admin -->
+        <?php include __DIR__ . "/components/header_admin.php"; ?>
 
         <!-- Conteúdo Principal -->
-        <main class="conteudo__principal">
+        <main class="bg-linear-to-b from-stone-950 to-stone-900 pt-5 xl:pt-10">
+            <h1 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 sm:text-3xl sm:p-2 xl:text-4xl">Dashboard</h1>
             <!-- Interface de gerenciamento e monitoramento dos dados -->
-            <section class="administrador container">
-                <h1 class="titulo">Administrador</h1>
-                <p class="texto">Seja bem-vindo adm 
-                    <span class="texto--destaque"><?php echo $nome; ?></span>.
-                    O que deseja fazer dessa vez?
-                </p>
+            <div class="flex flex-col mx-auto w-full max-w-6xl md:flex-row md:justify-evenly md:py-16 md:items-center">
+                <section class="flex flex-col md:px-2">
+                    <p class="text-center my-5 text-base sm:text-lg xl:text-xl max-w-sm mx-auto">Seja bem-vindo adm. 
+                        <span class="font-[Bebas_Neue] text-lg text-amber-400 sm:text-xl xl:text-2xl"><?= $nome; ?></span>!
+                        O que deseja fazer dessa vez?
+                    </p>
 
-                <img src="../imgs/icone-admin.png" alt="Administrador" class="administrador__icone">
+                    <img src="../assets/imgs/icone-admin.png" alt="Administrador" class="w-48 my-2 mx-auto xl:w-64 xl:my-4">
 
-                <div class="dados">
-                    <a href="../controller/listar.php">
-                        <button type="submit" class="btns" id="btn__usuarios">Usuários</button>
-                    </a>
-                
-                    <a href="../controller/controller_animes/listar_animes.php">
-                        <button type="submit" class="btns" id="btn__animes">Animes</button>
-                    </a>
-                </div>
-            </section>
+                    <!-- Ver dados de usuários ou de animes -->
+                    <div class="flex flex-col justify-center items-center">
+                        <a href="../index.php?page=dados_usuarios" class="block text-center cursor-pointer border-1 border-green-500 text-green-500 mt-4 py-1 px-2 hover:text-black hover:bg-green-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md" id="btn__cadastrar">
+                            Usuários
+                        </a>
 
-            <section class="informacoes">
-                <h2 class="subtitulo">Usuários:</h2>
-                <p class="informacoes__detalhes">Esta é a área de informações de Usuários, podendo-se: cadastrar, alterar, visualizar e deletar seus dados. Além da possibilidade de filtrá-los para uma maior análise de suas informações.</p>
+                        <a href="../index.php?page=dados_animes" class="block text-center cursor-pointer border-1 border-blue-500 text-blue-500 mt-4 py-1 px-2 hover:text-black hover:bg-blue-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md">
+                            Animes
+                        </a>
+                    </div>
+                </section>
 
-                <h2 class="subtitulo">Animes:</h2>
-                <p class="informacoes__detalhes">Esta é a área de informações de Animes, podendo-se: cadastrar, alterar, visualizar e deletar seus dados. Além da possibilidade de filtrá-los para uma maior análise de suas informações. E ainda fazendo o mesmo para os seus respectivos episódios.</p>
-            </section>
+                <section class="my-8 text-justify md:px-2">
+                    <h2 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 sm:text-3xl sm:p-2 xl:text-4xl">Usuários:</h2>
+                    <p class="p-4 max-w-md mx-auto xl:p-8 sm:text-lg xl:text-xl xl:max-w-xl">Esta é a área de informações de Usuários, podendo-se: cadastrar, alterar, visualizar e deletar seus dados.</p>
+
+                    <h2 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 sm:text-3xl sm:p-2 xl:text-4xl">Animes:</h2>
+                    <p class="p-4 max-w-md mx-auto xl:p-8 sm:text-lg xl:text-xl xl:max-w-xl">Esta é a área de informações de Animes, podendo-se: cadastrar, alterar, visualizar e deletar seus dados. Podendo-se também fazer o mesmo para os seus respectivos Episódios.</p>
+                </section>
+            </div>
+
+            <!-- Banner padrão -->
+            <?php include __DIR__ . "/components/banner_padrao.php"; ?>
         </main>
 
         <!-- Rodapé -->
-        <footer class="rodape">
-            <p>© Copyright Otakeros. Todos os direitos reservados.</p>
-        </footer>
+        <?php include __DIR__ . "/components/footer.php"; ?>
     </div>
 </body>
 </html>

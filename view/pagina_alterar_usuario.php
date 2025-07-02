@@ -1,10 +1,7 @@
 <?php
-    // Trazendo os dados do perfil do usuário
-    $nome = $_SESSION["nome_session"];
-    $idade = $_SESSION["idade_session"];
-    $email = $_SESSION["login_session"];
-    $senha = $_SESSION["senha_session"];
-    $avatar = $_SESSION["avatar_session"];
+    // Captura os erros (se existirem) para exibir
+    $erros = $_SESSION['erros_atualizar'] ?? [];
+    unset($_SESSION['erros_atualizar']); // Limpa os erros após exibir
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otakeros - Editar Perfil</title>
+    <title>Otakeros - Editar Usuário</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/imgs/favicon-16x16.png" type="image/x-icon">
     <!-- Ícones -->
@@ -28,40 +25,60 @@
     <!-- Conteúdo Principal -->
     <main class="flex flex-col mt-5 justify-center items-center md:my-0 md:grid md:grid-cols-2">
         <div class="min-w-3xs max-w-[300px] mx-auto">
-            <a href="?page=home" id="btn__voltar" class="block p-1 mt-5 border-1 border-stone-500 text-stone-500 w-20 text-center mx-auto hover:bg-stone-500 hover:text-stone-900 xl:text-xl xl:px-2 duration-500 ease-in-out">Voltar</a>
+            <a href="../index.php?page=dados_usuarios" id="btn__voltar" class="block p-1 mt-5 border-1 border-stone-500 text-stone-500 w-20 text-center mx-auto hover:bg-stone-500 hover:text-stone-900 xl:text-xl xl:px-2 duration-500 ease-in-out">Voltar</a>
 
-            <h1 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 mt-5 sm:text-3xl sm:p-2 xl:text-4xl">Edição de Perfil</h1>
+            <h1 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 mt-5 sm:text-3xl sm:p-2 xl:text-4xl">Edição de Usuário</h1>
 
-            <!-- Formulário de Alteração de Perfil -->
-            <form class="flex flex-col items-center justify-center" action="?page=salvar_edicao_perfil" method="post" enctype="multipart/form-data">
+            <!-- Formulário de Alteração de Usuário -->
+            <form class="flex flex-col items-center justify-center" action="?page=editar_usuario" method="post" enctype="multipart/form-data">
                 <div class="flex flex-col w-60">
-                    <img src="../assets/avatar/<?= !empty($avatar) ? $avatar : 'icone-usuario.jpg'; ?>" id="usuario__icone" class="rounded-full w-25 h-25 my-2 mx-auto xl:w-50 xl:h-50 xl:my-4" title="Avatar">
+                    <img src="<?= $caminho_avatar ?>" id="usuario__icone" class="rounded-full w-20 h-20 my-2 mx-auto xl:w-40 xl:h-40 xl:my-4" title="Avatar">
 
                     <div class="flex flex-col items-center">
                         <label for="cAvatar" id="label_arquivo" class="text-amber-400 sm:text-lg xl:text-xl">Escolha o seu Avatar:</label>
-                        <!-- Pré-visualização do avatar do perfil do usuário -->
+                        <!-- Pré-visualização do avatar do usuário -->
                         <input type="file" name="avatar" id="cAvatar" onchange="previewAvatar()" class="text-center cursor-pointer border-1 border-stone-500 text-stone-500 mt-4 py-1 px-2 hover:text-black hover:bg-stone-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md">
                     </div>
                 </div>
 
                 <div class="flex mt-4 justify-center">
+                    <i class="bi bi-list-ol bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="ID"></i>
+                    <input type="text" name="id" id="cID" readonly value="<?= $usuario['id_usuario'] ?>" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
+                </div>
+
+                <div class="flex mt-4 justify-center">
                     <i class="bi bi-person-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Nome"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="text" name="nome" id="cNome" placeholder="Digite seu Nome" value="<?= $nome; ?>" autofocus>
+                    <input type="text" name="nome" id="cNome" placeholder="Digite seu Nome" value="<?= $usuario['nome'] ?>" autofocus class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
                     <i class="bi bi-123 bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Idade"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="number" name="idade" id="cIdade" placeholder="Digite sua Idade" value="<?= $idade; ?>">
+                    <input type="number" name="idade" id="cIdade" placeholder="Digite sua Idade" value="<?= $usuario['idade'] ?>" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
                     <i class="bi bi-envelope-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="E-mail"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="email" name="email" id="cEmail" placeholder="Digite seu E-mail" value="<?= $email; ?>">
+                    <input type="email" name="email" id="cEmail" placeholder="Digite seu E-mail" value="<?= $usuario['email'] ?>" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
                     <i class="bi bi-lock-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Senha"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="password" name="senha" id="cSenha" placeholder="Digite sua Senha" value="<?= $senha; ?>">
+                    <input type="password" name="senha" id="cSenha" placeholder="Digite sua Senha" value="<?= $usuario['senha'] ?>" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
+                </div>
+
+                <div class="flex mt-4 justify-center">
+                    <?php
+                        $tipoDescricao = '';
+                        // Percorrendo por cada um dos tipos de usuário para exibir
+                        foreach ($tipos as $tipo) {
+                            if ($tipo['id_tipo'] == $usuario['id_tipo']) {
+                                $tipoDescricao = $usuario['id_tipo'] . ' - ' . $tipo['nome_tipo'];
+                                break;
+                            }
+                        }
+                    ?>
+                    <i class="bi bi-person-badge bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Tipo"></i>
+                    <input type="text" name="tipo" id="cTipo" readonly value="<?= htmlspecialchars($tipoDescricao) ?>" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex flex-col justify-center items-center">
@@ -92,7 +109,7 @@
     <?php endif; ?>
 
     <script>
-        // Prévia de vizualização do avatar do perfil do usuário
+        // Prévia de vizualização do avatar do usuário
         function previewAvatar() {
             // Pega o primeiro arquivo de imagem selecionado como entrada
             var avatar = document.querySelector('input[name=avatar]').files[0];

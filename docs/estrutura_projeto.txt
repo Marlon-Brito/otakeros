@@ -1,0 +1,80 @@
+/otakeros/
+│
+├── assets/
+|   └── animes/
+|   └── avatar/
+|   └── imgs/
+|   └── videos/
+|
+├── config/
+|   └── banco_credenciais.php
+|   └── conectar.php
+|
+├── model/
+│   └── anime_model.php
+│   └── episodio_model.php
+│   └── usuario_model.php
+│
+├── view/
+|   |── componentes/
+│   │   └── banner_padrao.php
+│   │   └── banner_responsivo.php
+│   │   └── footer.php
+│   │   └── header_admin.php
+│   │   └── header.php
+|   |
+│   └── pagina_alterar_anime.php
+│   └── pagina_alterar_episodio.php
+│   └── pagina_alterar_perfil.php
+│   └── pagina_alterar_usuario.php
+│   └── pagina_assistir.php
+│   └── pagina_cadastrar_anime.php
+│   └── pagina_cadastrar_episodio.php
+│   └── pagina_cadastrar_perfil.php
+│   └── pagina_cadastrar_usuario.php
+│   └── pagina_dados_animes.php
+│   └── pagina_dados_episodios.php
+│   └── pagina_dados_usuarios.php
+│   └── pagina_episodios.php
+│   └── pagina_erro_404.html
+│   └── pagina_erro_url.html
+│   └── pagina_home.php
+│   └── pagina_login.php
+│   └── pagina_perfil_administrador.php
+│   └── pagina_pesquisar.php
+|
+├── controller/
+│   │   │── controller_animes/
+│   │   │   └── alterar_anime_controller.php
+│   │   │   └── cadastrar_anime_controller.php
+│   │   │   └── excluir_anime_controller.php
+│   │   │   └── listar_anime_controller.php
+│   │   │
+│   │   │── controller_episodios/
+│   │   │    └── alterar_episodio_controller.php
+│   │   │    └── cadastrar_episodio_controller.php
+│   │   │    └── excluir_episodio_controller.php
+│   │   │    └── listar_episodio_controller.php
+│   │   │
+│   │   │── controller_perfis/
+│   │   │   └── alterar_perfil_controller.php
+│   │   │   └── cadastrar_perfil_controller.php
+|   |   |
+│   │   └── controller_usuarios/
+│   │       └── alterar_usuario_controller.php
+│   │       └── cadastrar_usuario_controller.php
+│   │       └── excluir_usuario_controller.php
+│   │       └── listar_usuario_controller.php
+│   │
+│   └── assistir_controller.php
+│   └── episodios_controller.php
+│   └── home_controller.php
+│   └── login_controller.php
+│   └── pesquisar_controller.php
+│   └── funcoes.php
+│
+├── docs/
+|   └── estrutura_projeto.txt
+|
+└── index.php
+└── tailwind.config.js

@@ -4,24 +4,26 @@
 
     iniciarSessao(); // Inicia a sessão senão existir uma
 
-    // Salva a última página acessada se for via GET
-    if (isset($_GET['page'])) {
-        $_SESSION['pagina_ativa'] = $_GET['page'];
-    }
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-    // Usa a última página como fallback (reserva) se ?page estiver ausente, assim não perdendo redirecionamento
-    if (!isset($_GET['page'])) {
+    // Fallback se não tiver ?page=... mas talvez esteja usando URL amigável
+    $page = $_GET['page'] ?? null;
+
+    // Se a URL amigável falhou (não setou $_GET), tenta pegar a última página usada
+    if (!$page) {
         if (isset($_SESSION['pagina_ativa'])) {
-            $_GET['page'] = $_SESSION['pagina_ativa'];
+            $page = $_SESSION['pagina_ativa'];
         } elseif (isset($_SESSION['tipo_session']) && $_SESSION['tipo_session'] == 1) {
-            $_GET['page'] = 'dashboard';
+            $page = 'dashboard';
         } else {
-            $_GET['page'] = 'home';
+            $page = 'home';
         }
+    } else {
+        // Se foi definida, salva na sessão
+        $_SESSION['pagina_ativa'] = $page;
     }
-
-    // Definindo a página
-    $page = $_GET['page'];
 
     // Roteamento simples
     switch ($page) {

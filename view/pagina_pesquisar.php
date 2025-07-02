@@ -1,135 +1,66 @@
-<?php
-    // Determina se uma variável é considerada definida, isto é, está declarada e é diferente de null
-    // Se a variável tornou-se indefinida com a função unset() , ela não é mais considerada definida
-    if (!isset($_SESSION)){
-        session_start();
-    }
-
-    // Não permite acessar a página principal pelo navegador
-    // Senão existir a seção volta pela página de erro
-    if (!isset($_SESSION["login_session"])       AND
-        !isset($_SESSION["senha_session"])       AND
-
-        !isset($_SESSION["id_usuario_session"]) AND
-        !isset($_SESSION["nome_session"])        AND
-        !isset($_SESSION["idade_session"])         AND
-        !isset($_SESSION["avatar_session"])      AND
-        !isset($_SESSION["tipo_session"])
-    ){
-        header("location: ../view/erro_url.html");
-        exit;
-    }
-    // Bloquear página ao tentar ir pela url sem logar
-    if (isset($_GET['logout'])){
-        unset($_SESSION['login_session']);
-        unset($_SESSION['senha_session']);
-        session_destroy();
-        header('location: ../index.php');
-    }
-    // Se o usuário não for um espectador irá para a página de erro
-    if ($_SESSION["tipo_session"] != 2){
-        session_destroy();
-        header("location: ../view/erro_url.html");
-    }
-
-    $id_usuario = $_SESSION["id_usuario_session"];
-    $nome = $_SESSION["nome_session"];
-    $idade = $_SESSION["idade_session"];
-    $email = $_SESSION["login_session"];
-    $senha = $_SESSION["senha_session"];
-    $avatar = $_SESSION["avatar_session"];
-    $tipo = $_SESSION["tipo_session"];
-
-    // Conexão com o Banco de Dados
-    include "../model/conectar.php";
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otakeros - Pesquisar</title>
-    <link rel="stylesheet" href="../estilizacao/pagina_pesquisar.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/imgs/favicon-16x16.png" type="image/x-icon">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter&display=swap" rel="stylesheet">
+    <!-- TailswindCSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>    
-    <div class="fundo">
+<body class="text-white text-base font-[Inter]">
+    <div class="bg-stone-900">
         <!-- Cabeçalho -->
-        <header class="cabecalho">
-            <a href="./pagina_home.php" class="logotipo">
-                <img class="logo__img" src="../imgs/logo-otakeros-p.png">
-                <div class="logo__nome">Otakeros</div>
-            </a>
-
-            <nav>
-                <ul class="cabecalho__menu">
-                    <li class="cabecalho__menu--linha">
-                        <a href="./pagina_home.php" class="cabecalho__menu--linha-item">Home</a>
-                    </li>
-                    <li class="cabecalho__menu--linha">
-                        <a href="#" class="cabecalho__menu--linha-item">Animes</a>
-                    </li>
-                    <li class="cabecalho__menu--linha">
-                        <a href="?logout" class="cabecalho__menu--linha-item">Sair</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+        <?php include __DIR__ . "/components/header.php"; ?>
 
         <!-- Conteúdo Principal -->
-        <main class="conteudo container">
-           <section class="pesquisa">
-                <a href="./pagina_home.php" id="btn__voltar">Voltar</a>
+        <main>
+           <section class="flex flex-col">
+                <!-- Exibindo resultado da pesquisa -->
+                <div class="flex flex-col items-center py-5 xl:py-10 bg-linear-to-b from-stone-950 to-stone-900">
+                    <h1 class="text-2xl sm:text-3xl xl:text-4xl text-amber-400 text-center">Resultado da Pesquisa</h1>
+                    <p class="mt-5 text-base sm:text-lg xl:text-xl">Você pesquisou por:</p>
+                    <span class="mt-5 text-base sm:text-lg xl:text-xl bg-white text-black py-2 px-4 border-2 border-black rounded-full">
+                        <!-- Percorrendo por cada um dos animes da lista para exibir suas informações -->
+                        <!-- Converte caracteres especiais em entidades HTML -->
+                        <?= htmlspecialchars($pesquisa ?? '') ?>
+                    </span>
+                </div>
 
-                <h1 class="titulo">Resultado da Pesquisa</h1>
-
-                <?php
-                    // Limpando o campo de pesquisa para filtrar caracteres especiais
-                    $pesquisar = filter_input(INPUT_POST, 'pesquisar', FILTER_SANITIZE_SPECIAL_CHARS);
-
-                    echo '<div class="resultado">
-                        <h2 class="subtitulo">Você pesquisou por:</h2>
-                        <p class="digitado">'.$pesquisar.'</p>
-                    </div>';
-                ?>
-
-                <nav class="animes">
-                    <ul class="lista__animes">
-                        <?php
-                            // Usando um filtro de aproximação pelo nome. Pesquisando todos os animes para pegar suas informações e apresentar
-                            $arrayPesquisa = $sql -> query("SELECT * FROM anime WHERE nome_anime LIKE '%$pesquisar%' ORDER BY nome_anime LIMIT 20");
-                                          
-                            // Busca uma linha de dados do conjunto de resultados e a retorna como uma matriz (seja array associativo, numérico ou ambos)
-                            while ($linha = mysqli_fetch_array($arrayPesquisa)){
-                                $id_anime = $linha["id_anime"];
-                                $nome_anime = $linha["nome_anime"];
-                                $imagem_anime = $linha["imagem_anime"];
-
-                                // Passando id do anime selecionado pela url
-                                echo '<li class="lista__animes--item">
-                                    <a href="./pagina_episodios.php?id_anime='.$id_anime.'">
-                                        <figure>
-                                            <img class="imagem--anime" src="../controller/controller_animes/imagem/'.$imagem_anime.'" alt="'.$nome_anime.'">
-                                            <figcaption class="nome--anime">'.$nome_anime.'</figcaption>
+                <!-- Lista de animes pesquisados -->
+                <nav>
+                    <!-- Se a lista de animes estiver vazia mostrará uma mensagem de erro dizendo que não há animes -->
+                    <?php if (empty($animes)): ?>
+                        <p class="text-base sm:text-lg xl:text-xl text-center text-amber-400">Nenhum anime encontrado com esse nome.</p>
+                    <!-- Mas se tiver animes na lista percorrerá por cada um para exibir as informações dos que foram pesquisados -->
+                    <?php else: ?>
+                        <ul class="flex flex-row flex-wrap justify-center items-center max-w-sm sm:max-w-3xl xl:max-w-7xl mx-auto 2xl:max-w-[1500px]">
+                            <?php foreach ($animes as $anime): ?>
+                                <li class="w-32 h-60 sm:w-48 sm:h-[320px] xl:w-60 xl:h-[400px] flex items-center justify-center bg-gradient-to-b from-amber-300 via-orange-400 via-15% to-stone-950 to-85% text-center m-5 hover:grayscale overflow-hidden duration-500 ease-in-out">
+                                    <a href="index.php?page=episodios&id_anime=<?= $anime['id_anime'] ?>" class="w-full h-full">
+                                        <figure class="w-full h-full flex flex-col justify-between items-center p-2">
+                                            <img class="imagem--anime" src="../assets/animes/<?= $anime['imagem_anime']; ?>" alt="<?= $anime['nome_anime']; ?>" class="w-full h-[75%]">
+                                            <figcaption class="text-amber-400 text-sm h-[25%] flex items-center justify-center sm:text-base xl:text-lg"><?= $anime['nome_anime']; ?></figcaption>
                                         </figure>
                                     </a>
-                                </li>';
-                            }
-                        ?>
-                    </ul>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
                 </nav>
            </section>
 
-           <picture>
-                <source media="(min-width: 1200px)" srcset="../imgs/poster-otakeros-pb-m.png" type="image/png" class="poster--pb">
-                <img src="../imgs/poster-otakeros-pb-p.png" alt="Poster Otakeros - Preto e Branco" class="poster--pb">
-            </picture>
+           <!-- Banner padrão -->
+            <?php include __DIR__ . "/components/banner_padrao.php"; ?>
         </main>
 
         <!-- Rodapé -->
-        <footer class="rodape">
-            <p>© Copyright Otakeros. Todos os direitos reservados.</p>
-        </footer>
+        <?php include __DIR__ . "/components/footer.php"; ?>
     </div>
 </body>
 </html>

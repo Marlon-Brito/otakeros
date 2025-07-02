@@ -1,10 +1,7 @@
 <?php
-    // Trazendo os dados do perfil do usuário
-    $nome = $_SESSION["nome_session"];
-    $idade = $_SESSION["idade_session"];
-    $email = $_SESSION["login_session"];
-    $senha = $_SESSION["senha_session"];
-    $avatar = $_SESSION["avatar_session"];
+    // Captura os erros (se existirem) para exibir
+    $erros = $_SESSION['erros_cadastro'] ?? [];
+    unset($_SESSION['erros_cadastro']); // Limpa os erros após exibir
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otakeros - Editar Perfil</title>
+    <title>Otakeros - Cadastrar Usuário</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/imgs/favicon-16x16.png" type="image/x-icon">
     <!-- Ícones -->
@@ -28,14 +25,14 @@
     <!-- Conteúdo Principal -->
     <main class="flex flex-col mt-5 justify-center items-center md:my-0 md:grid md:grid-cols-2">
         <div class="min-w-3xs max-w-[300px] mx-auto">
-            <a href="?page=home" id="btn__voltar" class="block p-1 mt-5 border-1 border-stone-500 text-stone-500 w-20 text-center mx-auto hover:bg-stone-500 hover:text-stone-900 xl:text-xl xl:px-2 duration-500 ease-in-out">Voltar</a>
+            <a href="?page=login" class="block p-1 mt-5 border-1 border-stone-500 text-stone-500 w-20 text-center mx-auto hover:bg-stone-500 hover:text-stone-900 xl:text-xl xl:px-2 duration-500 ease-in-out">Voltar</a>
 
-            <h1 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 mt-5 sm:text-3xl sm:p-2 xl:text-4xl">Edição de Perfil</h1>
+            <h1 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 mt-5 sm:text-3xl sm:p-2 xl:text-4xl">Cadastro de Usuário</h1>
 
-            <!-- Formulário de Alteração de Perfil -->
-            <form class="flex flex-col items-center justify-center" action="?page=salvar_edicao_perfil" method="post" enctype="multipart/form-data">
-                <div class="flex flex-col w-60">
-                    <img src="../assets/avatar/<?= !empty($avatar) ? $avatar : 'icone-usuario.jpg'; ?>" id="usuario__icone" class="rounded-full w-25 h-25 my-2 mx-auto xl:w-50 xl:h-50 xl:my-4" title="Avatar">
+            <!-- Formulário de Cadastro de Perfil de Usuário -->
+            <form class="flex flex-col items-center justify-center" action="?page=salvar_perfil" method="post" enctype="multipart/form-data">
+                <div id="formulario__avatar" class="flex flex-col w-60">
+                    <img src="../assets/imgs/icone-usuario.jpg" id="usuario__icone" class="rounded-full w-25 h-25 my-2 mx-auto xl:w-50 xl:h-50 xl:my-4" title="Avatar">
 
                     <div class="flex flex-col items-center">
                         <label for="cAvatar" id="label_arquivo" class="text-amber-400 sm:text-lg xl:text-xl">Escolha o seu Avatar:</label>
@@ -46,26 +43,26 @@
 
                 <div class="flex mt-4 justify-center">
                     <i class="bi bi-person-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Nome"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="text" name="nome" id="cNome" placeholder="Digite seu Nome" value="<?= $nome; ?>" autofocus>
+                    <input type="text" name="nome" id="cNome" autofocus placeholder="Digite seu nome" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
                     <i class="bi bi-123 bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Idade"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="number" name="idade" id="cIdade" placeholder="Digite sua Idade" value="<?= $idade; ?>">
+                    <input type="number" name="idade" id="cIdade" placeholder="Digite sua idade" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
                     <i class="bi bi-envelope-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="E-mail"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="email" name="email" id="cEmail" placeholder="Digite seu E-mail" value="<?= $email; ?>">
+                    <input type="email" name="email" id="cEmail" placeholder="Digite seu e-mail" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
                     <i class="bi bi-lock-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Senha"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="password" name="senha" id="cSenha" placeholder="Digite sua Senha" value="<?= $senha; ?>">
+                    <input type="password" name="senha" id="cSenha" placeholder="Digite sua senha" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex flex-col justify-center items-center">
-                    <button type="submit" name="btn_enviar" class="text-center cursor-pointer border-1 border-green-500 text-green-500 mt-4 py-1 px-2 hover:text-black hover:bg-green-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md" id="btn__cadastrar">Alterar</button>
+                    <button type="submit" name="btn_enviar" class="text-center cursor-pointer border-1 border-green-500 text-green-500 mt-4 py-1 px-2 hover:text-black hover:bg-green-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md" id="btn__cadastrar">Cadastrar</button>
 
                     <button type="reset" value="Limpar" class="text-center cursor-pointer border-1 border-blue-500 text-blue-500 mt-4 py-1 px-2 hover:text-black hover:bg-blue-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md" id="btn__limpar">Limpar</button>
                 </div>
@@ -79,12 +76,12 @@
     <!-- Usando a biblioteca SweetAlert2, que oferece alertas super estilosos -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- Erros de alteração -->
+    <!-- Usar no PHP logo antes de fechar o corpo da página -->
     <?php if (!empty($erros)): ?>
         <script>
             Swal.fire({
                 icon: 'error',
-                title: 'Erro ao atualizar',
+                title: 'Erro ao fazer login',
                 html: `<?= implode('<br>', array_map('htmlspecialchars', $erros)) ?>`,
                 confirmButtonColor: '#d33'
             });

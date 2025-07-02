@@ -1,10 +1,7 @@
 <?php
-    // Trazendo os dados do perfil do usuário
-    $nome = $_SESSION["nome_session"];
-    $idade = $_SESSION["idade_session"];
-    $email = $_SESSION["login_session"];
-    $senha = $_SESSION["senha_session"];
-    $avatar = $_SESSION["avatar_session"];
+    // Captura os erros (se existirem) para exibir
+    $erros = $_SESSION['erros_atualizar'] ?? [];
+    unset($_SESSION['erros_atualizar']); // Limpa os erros após exibir
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Otakeros - Editar Perfil</title>
+    <title>Otakeros - Editar Anime</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/imgs/favicon-16x16.png" type="image/x-icon">
     <!-- Ícones -->
@@ -28,40 +25,35 @@
     <!-- Conteúdo Principal -->
     <main class="flex flex-col mt-5 justify-center items-center md:my-0 md:grid md:grid-cols-2">
         <div class="min-w-3xs max-w-[300px] mx-auto">
-            <a href="?page=home" id="btn__voltar" class="block p-1 mt-5 border-1 border-stone-500 text-stone-500 w-20 text-center mx-auto hover:bg-stone-500 hover:text-stone-900 xl:text-xl xl:px-2 duration-500 ease-in-out">Voltar</a>
+            <a href="../index.php?page=dados_animes" id="btn__voltar" class="block p-1 mt-5 border-1 border-stone-500 text-stone-500 w-20 text-center mx-auto hover:bg-stone-500 hover:text-stone-900 xl:text-xl xl:px-2 duration-500 ease-in-out">Voltar</a>
 
-            <h1 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 mt-5 sm:text-3xl sm:p-2 xl:text-4xl">Edição de Perfil</h1>
+            <h1 class="font-[Bebas_Neue] text-2xl text-amber-400 text-center border-y border-amber-400 mt-5 sm:text-3xl sm:p-2 xl:text-4xl">Edição de Anime</h1>
 
-            <!-- Formulário de Alteração de Perfil -->
-            <form class="flex flex-col items-center justify-center" action="?page=salvar_edicao_perfil" method="post" enctype="multipart/form-data">
+            <!-- Formulário de Alteração de Anime -->
+            <form class="flex flex-col items-center justify-center" action="?page=editar_anime" method="post" enctype="multipart/form-data">
                 <div class="flex flex-col w-60">
-                    <img src="../assets/avatar/<?= !empty($avatar) ? $avatar : 'icone-usuario.jpg'; ?>" id="usuario__icone" class="rounded-full w-25 h-25 my-2 mx-auto xl:w-50 xl:h-50 xl:my-4" title="Avatar">
+                    <img src="<?= $caminho_imagem ?>" id="anime__icone" class="rounded-full w-20 h-20 my-2 mx-auto xl:w-40 xl:h-40 xl:my-4" title="Imagem">
 
                     <div class="flex flex-col items-center">
-                        <label for="cAvatar" id="label_arquivo" class="text-amber-400 sm:text-lg xl:text-xl">Escolha o seu Avatar:</label>
-                        <!-- Pré-visualização do avatar do perfil do usuário -->
-                        <input type="file" name="avatar" id="cAvatar" onchange="previewAvatar()" class="text-center cursor-pointer border-1 border-stone-500 text-stone-500 mt-4 py-1 px-2 hover:text-black hover:bg-stone-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md">
+                        <label for="cImagem" id="label_arquivo" class="text-amber-400 sm:text-lg xl:text-xl">Escolha a imagem:</label>
+                        <!-- Pré-visualização da imagem do anime -->
+                        <input type="file" name="imagem" id="cImagem" onchange="previewImagem()" class="text-center cursor-pointer border-1 border-stone-500 text-stone-500 mt-4 py-1 px-2 hover:text-black hover:bg-stone-500 xl:py-2 xl:px-4 xl:text-xl duration-500 ease-in-out w-60 sm:w-xs xl:w-md">
                     </div>
                 </div>
 
                 <div class="flex mt-4 justify-center">
-                    <i class="bi bi-person-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Nome"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="text" name="nome" id="cNome" placeholder="Digite seu Nome" value="<?= $nome; ?>" autofocus>
+                    <i class="bi bi-list-ol bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="ID do anime"></i>
+                    <input type="text" name="id" id="cID" readonly value="<?= $anime['id_anime'] ?>" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
-                    <i class="bi bi-123 bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Idade"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="number" name="idade" id="cIdade" placeholder="Digite sua Idade" value="<?= $idade; ?>">
+                    <i class="bi bi-card-image bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Nome"></i>
+                    <input type="text" name="nome" id="cNome" placeholder="Digite o Nome" value="<?= $anime['nome_anime'] ?>" autofocus class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4">
                 </div>
 
                 <div class="flex mt-4 justify-center">
-                    <i class="bi bi-envelope-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="E-mail"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="email" name="email" id="cEmail" placeholder="Digite seu E-mail" value="<?= $email; ?>">
-                </div>
-
-                <div class="flex mt-4 justify-center">
-                    <i class="bi bi-lock-fill bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Senha"></i>
-                    <input class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4" type="password" name="senha" id="cSenha" placeholder="Digite sua Senha" value="<?= $senha; ?>">
+                    <i class="bi bi-card-text bg-linear-to-r from-amber-300 to-orange-400 text-black p-1 text-xl xl:px-2 xl:text-2xl" title="Descrição"></i>
+                    <textarea name="descricao" id="cDescricao" rows="3" placeholder="Digite a Descrição" class="bg-white text-black py-1 px-2 focus:outline-none sm:text-lg sm:w-xs xl:w-md xl:text-xl xl:py-2 xl:px-4 resize-none"><?= $anime['descricao_anime'] ?></textarea>
                 </div>
 
                 <div class="flex flex-col justify-center items-center">
@@ -92,12 +84,12 @@
     <?php endif; ?>
 
     <script>
-        // Prévia de vizualização do avatar do perfil do usuário
-        function previewAvatar() {
+        // Prévia de vizualização da imagem do anime
+        function previewImagem() {
             // Pega o primeiro arquivo de imagem selecionado como entrada
-            var avatar = document.querySelector('input[name=avatar]').files[0];
+            var imagem = document.querySelector('input[name=imagem]').files[0];
             // Pega o elemento que mostrará a prévia da imagem
-            var preview = document.querySelector('img#usuario__icone');
+            var preview = document.querySelector('img#anime__icone');
             // Cria um objeto FileReader para ler o conteúdo do arquivo
             var reader = new FileReader();
 
@@ -107,11 +99,10 @@
             }
 
             // Se uma imagem foi selecionada, lê a imagem e a converte para base64, isso dispara o onloadend que troca o src do elemento de prévia
-            if(avatar){
-                reader.readAsDataURL(avatar);
-            }
+            if (imagem) {
+                reader.readAsDataURL(imagem);
             // Mas se nenhum arquivo foi selecionado se limpa o src do elemento de prévia
-            else{
+            } else {
                 preview.src = "";
             }
         }
