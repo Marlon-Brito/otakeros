@@ -75,6 +75,8 @@
 │
 ├── docs/
 |   └── estrutura_projeto.txt
+|   └── otakeros-script-bd.sql
+|   └── otakeros.mwb
 |
 └── index.php
 └── tailwind.config.js
