@@ -5,7 +5,7 @@ __Otakeros__ é um site e também comunidade online cuja mídia se baseia na tra
 ## 🛠️ Tecnologias Utilizadas
 
 * HTML
-* CSS
+* TailwindCSS
 * JS
 * PHP
 * MySQL
