@@ -39,12 +39,12 @@ __Otakeros__ é um site e também comunidade online cuja mídia se baseia na tra
 2. Aguarde um momento e veja se tanto o Apache quanto o MySQL se mostraram como ativados (eles respectivamente usam geralmente as sequintes portas, 80 e 3306).
 3. Então vai-se instalar o banco de dados do projeto:
    1. Entre no projeto e acesse sua pasta "model".
-   2. Procure o arquivo **SQL** "otakeros-banco-de-dados" e copie todo seu código (este é o script do banco de dados do projeto).
+   2. Procure o arquivo **SQL** "otakeros-script-bd" e copie todo seu código (este é o script do banco de dados do projeto).
       **Dica:** dentro deste script que cria o banco, bem no final há um código que cria o usuário administrador (no caso eu "Marlon") e um usuário comum/espectador (no caso o "Asta"):
       ```
       INSERT INTO `usuario` VALUES (1,'Marlon',20,'m@m.com','admin','',1), (2,'Asta',15,'asta@asta.com','clover','Asta.jpeg',2);
       ```
-      Se quiser pode mudar isso! De começo já altere o ADM com as suas informações e faça login com elas depois. O ADM é único e ao acessar o site com ele se vê todas as informações, seja de usuários cadastrados ou de animes e seus respectivos episódios. Já o escpectador ou usuário comum apenas acessa o site para ver seu conteúdo.
+      Se quiser pode mudar isso! De começo já altere o ADM com as suas informações e faça login com elas depois. O ADM é único e ao acessar o site com ele se vê todas as informações, seja de usuários cadastrados ou de animes e seus respectivos episódios. Já o espectador ou usuário comum apenas acessa o site para ver seu conteúdo.
 
       Exemplo de como pode alterar os dados:
        ```
@@ -61,17 +61,25 @@ __Otakeros__ é um site e também comunidade online cuja mídia se baseia na tra
       | 6 º     | 1     | ID ou código identificador do tipo de usuário (só há dois tipos: o 1 que é o ADM e o 2 que é o espectador). |
       
       Assim como também pode inserir outros dados... Mas de começo deixei apenas um usuário administrador e um espectador, o resto fica a critério de vocês!
-   4. Voltando para o laragon já inicializado, clique no botão "Terminal", ele levará para o console/linha de comando do MySQL.
-   5. Digite o comando "mysql -u root -p" para acessar o SGBD, se pedir a senha aperte ENTER pois é padrão não ter uma, mas caso você já use o MySQL e possui uma criada terá que inserí-la.
-   6. Feito isso dá para usar os comandos de banco de dados livremente neste momento, então aqui se vai colar todo aquele código copiado do arquivo aberto anteriormente e dar ENTER para criar o banco.
-   7. E tendo o banco do projeto já instalado deve-se conectá-lo ao projeto em si, por isso na mesma pasta "model" se abrirá o arquivo "conectar.php" e irá substituir as informações descritivas que estão na variável de conexão "$sql" pelas do banco de dados, exemplo:
-      Variável de conexão com informações descritivas.
+   3. Voltando para o laragon já inicializado, clique no botão "Terminal", ele levará para o console/linha de comando do MySQL.
+   4. Digite o comando "mysql -u root -p" para acessar o SGBD, se pedir a senha aperte ENTER pois é padrão não ter uma, mas caso você já use o MySQL e possui uma criada terá que inserí-la.
+   5. Feito isso dá para usar os comandos de banco de dados livremente neste momento, então aqui se vai colar todo aquele código copiado do arquivo aberto anteriormente e dar ENTER para criar o banco.
+      **Dica:** Caso tenha familiaridade com o **MySQL Workbench** (uma ferramenta visual para modelagem de bancos de dados), há um arquivo chamado **otakeros.mwb** na pasta "model", cujo qual também contém uma versão do banco de dados "otakeros" mas que pode ser modelada de forma visual.
+   6. E tendo o banco do projeto já instalado deve-se conectá-lo ao projeto em si, por isso na pasta "config" se abrirá o arquivo "banco_credenciais.php" e irá substituir as informações descritivas que estão nas constantes de definição "define" pelas do banco de dados, exemplo:
+
+      Constantes de definição com informações descritivas em pares chave-valor.
       ```
-      $sql = new MySQLi('host', 'usuario', 'senha', 'banco-de-dados'); 
+      define('DB_HOST', 'host');
+      define('DB_USER', 'usuario');
+      define('DB_PASS', 'senha');
+      define('DB_NAME', 'banco_de_dados');
       ```
       Trocando estas informações pelas reais do banco.
       ```
-      $sql = new MySQLi('localhost', 'root', '12345678', 'otakeros'); 
+      define('DB_HOST', 'localhost');
+      define('DB_USER', 'root');
+      define('DB_PASS', '12345678');
+      define('DB_NAME', 'otakeros');
       ```
       E só informando sobre os campos de dados acima:
       | Campos               | Dados                | Descrição            |
@@ -81,10 +89,13 @@ __Otakeros__ é um site e também comunidade online cuja mídia se baseia na tra
       | 3 º                  | '12345678'  | Senha do usuário.    |
       | 4 º                  | 'otakeros'  | Nome do banco de dados.    |
    
-5. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
-6. Então você pode acessar o projeto tanto como ADM com as informações de e-mail e senha feitas no script ou, como visto na interface do site, criar um registro e acessar como espectador.
+4. Agora vá no botão "Menu", clique na pasta "www" e selecione o projeto.
+5. Então você pode acessar o projeto tanto como ADM com as informações de e-mail e senha feitas no script ou, como visto na interface do site, criar um registro e acessar como espectador.
+6. E para finalizar, usei o framework **TailwindCSS** para estilizar o projeto, de código aberto e que permite criar designs personalizados diretamente no HTML através de classes utilitárias. Para usá-lo de forma simples, basta usar o Play CDN para experimentar o Tailwind diretamente no navegador, sem precisar de nenhuma etapa de compilação:
+   1. Acesse a documentação do **TailwindCSS** [aqui](https://tailwindcss.com/docs/installation/play-cdn).
+   2. Adicione a tag de script Play CDN ao final do <head> do seu arquivo HTML e comece a usar as classes utilitárias do Tailwind para estilizar seu conteúdo.
      
-   Pronto! o projeto estará rodando no servidor criado.
+   Pronto! Agora tendo baixado os arquivos, configurado o ambiente e criado o banco de dados, o projeto estará rodando no servidor criado.
 
 ## 🖥️ Deploy
 
